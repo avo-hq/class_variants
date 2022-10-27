@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.description = "Easily configure styles and apply them as classes."
   s.authors     = ["Adrian Marin"]
   s.email       = "adrian@adrianthedev.com"
-  s.files       = ["lib/class_variants.rb"]
+  s.files       = Dir["{lib}/**/*"]
   s.homepage    = "https://github.com/avo-hq/class_variants"
   s.license     = "MIT"
 
