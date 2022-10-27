@@ -6,7 +6,7 @@ We ❤️ Tailwind CSS but sometimes it's difficult to manage the state of some 
 
 Add this line to your application's Gemfile:
 
-```
+```ruby
 gem 'class_variants'
 ```
 
