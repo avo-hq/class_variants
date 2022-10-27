@@ -4,4 +4,9 @@ require "class_variants/instance"
 require "class_variants/railtie" if defined?(Rails)
 
 module ClassVariants
+  class << self
+    def build(classes, **args)
+      Instance.new classes, **args
+    end
+  end
 end
