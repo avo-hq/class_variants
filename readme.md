@@ -2,6 +2,8 @@
 
 We ❤️ Tailwind CSS but sometimes it's difficult to manage the state of some elements using conditionals. `class_variants` is a tiny helper that should enable you to create, configure, and apply different variants of elements as classes.
 
+Inspired by [variant-classnames](https://github.com/mattvalleycodes/variant-classnames) ✌️
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -100,3 +102,14 @@ end
 ### Output
 
 ![](sample.jpg)
+
+## Contributing
+
+1. Fork it `git clone https://github.com/avo-hq/class_variants`
+1. Create your feature branch `git checkout -b my-new-feature`
+1. Commit your changes `git commit -am 'Add some feature'`
+1. Push to the branch `git push origin my-new-feature`
+1. Create new Pull Request
+
+## License
+This package is available as open source under the terms of the MIT License.
