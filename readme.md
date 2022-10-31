@@ -103,6 +103,12 @@ end
 
 ![](sample.jpg)
 
+## Try Avo ⭐️
+
+If you enjoyed this gem try out Avo. It helps developers build internal tools, admins, CMSes, CRMs, and any other type of business apps 10x faster on top of Ruby on Rails.
+
+[![](./logo-on-white.png)](https://github.com/avo-hq/avo)
+
 ## Contributing
 
 1. Fork it `git clone https://github.com/avo-hq/class_variants`
