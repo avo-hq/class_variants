@@ -103,6 +103,10 @@ end
 
 ![](sample.jpg)
 
+## Other packages
+
+ - `stimulus-confetti` - The easiest way to add confetti to your StimulusJS app
+
 ## Try Avo ⭐️
 
 If you enjoyed this gem try out Avo. It helps developers build internal tools, admins, CMSes, CRMs, and any other type of business apps 10x faster on top of Ruby on Rails.
