@@ -105,7 +105,7 @@ end
 
 ## Other packages
 
- - `stimulus-confetti` - The easiest way to add confetti to your StimulusJS app
+ - [`stimulus-confetti`](https://github.com/avo-hq/stimulus-confetti) - The easiest way to add confetti to your StimulusJS app
 
 ## Try Avo ⭐️
 
