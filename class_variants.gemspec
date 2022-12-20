@@ -21,5 +21,7 @@ Gem::Specification.new do |s|
     raise "RubyGems 2.0 or newer is required to protect against " \
       "public gem pushes."
   end
+
+  s.add_development_dependency "benchmark-ips"
 end
 

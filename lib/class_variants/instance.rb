@@ -9,31 +9,21 @@ class ClassVariants::Instance
     @defaults = defaults
   end
 
-  def render(**settings)
-    result = []
+  def render(**overrides)
+    # Start with our default classes
+    result = [@classes]
 
-    # Add the default classes if any provided
-    result << classes if classes
-
-    # Keep the applied variants so we can later apply the defaults
-    applied_options = []
-
-    # Go through each keys provided
-    settings.each do |key, value|
-      if variants.keys.include? key
-        applied_options << key
-        result << variants[key][value]
+    # Then merge the passed in overrides on top of the defaults
+    @defaults.merge(overrides)
+      .each do |variant_type, variant|
+        # dig the classes out and add them to the result
+        result << @variants.dig(variant_type, variant)
       end
-    end
 
-    if defaults.present?
-      defaults.each do |key, key_to_use|
-        unless applied_options.include? key
-          result << @variants[key][key_to_use] if @variants[key].present?
-        end
-      end
-    end
+    # Compact out any nil values we may have dug up
+    result.compact!
 
+    # Return the final token list
     result.join " "
   end
 end
