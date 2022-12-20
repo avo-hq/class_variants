@@ -26,10 +26,10 @@ class ClassVariants::Instance
       end
     end
 
-    if defaults.present?
+    if defaults && !defaults.empty?
       defaults.each do |key, key_to_use|
         unless applied_options.include? key
-          result << @variants[key][key_to_use] if @variants[key].present?
+          result << @variants[key][key_to_use] if @variants[key] && !@variants[key].empty?
         end
       end
     end
