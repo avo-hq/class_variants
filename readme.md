@@ -130,3 +130,17 @@ If you enjoyed this gem try out Avo. It helps developers build internal tools, a
 
 ## License
 This package is available as open source under the terms of the MIT License.
+
+## Cutting a release
+
+```bash
+# Build
+gem build class_variants.gemspec -o latest.gem
+# Publish
+gem push --host https://rubygems.org/ ./latest.gem
+# Cut a tag
+git tag v0.0.6 -a -m "Version 0.0.6"
+# Push tag to repo
+git push --follow-tags
+# Go to the repo and generate release from tag
+```
