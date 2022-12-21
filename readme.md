@@ -52,17 +52,24 @@ button_classes = ClassVariants.build(
       red: "bg-red-600 hover:bg-red-700 focus:ring-red-500",
       blue: "bg-blue-600 hover:bg-blue-700 focus:ring-blue-500",
     },
+    # A variant whose value is a string will be expanded into a hash that looks
+    # like  { true => "classes" }
+    block: "w-full justify-center",
+    # Unless the key starts with !, in which case it will expand into
+    # { false => "classes" }
+    "!block": "w-auto",
   },
   defaults: {
     size: :md,
     color: :indigo,
+    icon: false
   }
 )
 
 # Call it with our desired variants
 button_classes.render(color: :blue, size: :sm)
 button_classes.render
-button_classes.render(color: :red, size: :xl)
+button_classes.render(color: :red, size: :xl, icon: true)
 ```
 
 ## Use with Rails

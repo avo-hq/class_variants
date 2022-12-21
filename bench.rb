@@ -21,10 +21,13 @@ Benchmark.ips do |x|
         blue: "text-white bg-blue-500 border-blue-700 hover:bg-blue-600",
         red: "text-white bg-red-500 border-red-700 hover:bg-red-600",
       },
+      block: "justify-center w-full",
+      "!block": "justify-between",
     },
     defaults: {
       size: :base,
       color: :white,
+      block: false,
     }
   )
 
@@ -33,6 +36,6 @@ Benchmark.ips do |x|
   end
 
   x.report("rendering with overrides") do
-    button_classes.render(size: :sm, color: :red)
+    button_classes.render(size: :sm, color: :red, block: true)
   end
 end
