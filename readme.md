@@ -113,6 +113,7 @@ end
 ## Other packages
 
  - [`stimulus-confetti`](https://github.com/avo-hq/stimulus-confetti) - The easiest way to add confetti to your StimulusJS app
+ - [`avo`](https://github.com/avo-hq/avo) - Build Content management systems with Ruby on Rails
 
 ## Try Avo ⭐️
 
