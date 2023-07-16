@@ -4,6 +4,11 @@ We ❤️ Tailwind CSS but sometimes it's difficult to manage the state of some 
 
 Inspired by [variant-classnames](https://github.com/mattvalleycodes/variant-classnames) ✌️
 
+## Quicklinks
+
+* [DRY up your tailwind CSS using this awesome gem](https://www.youtube.com/watch?v=cFcwNH6x77g)
+
+
 ## Installation
 
 Add this line to your application's Gemfile:
