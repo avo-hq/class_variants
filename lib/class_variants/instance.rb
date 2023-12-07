@@ -3,9 +3,10 @@ class ClassVariants::Instance
   attr_reader :variants
   attr_reader :defaults
 
-  def initialize(classes = "", variants: {}, defaults: {})
+  def initialize(classes = "", variants: {}, compoundVariants: [], defaults: {})
     @classes = classes
     @variants = expand_boolean_variants(variants)
+    @compoundVariants = compoundVariants
     @defaults = defaults
   end
 
@@ -14,11 +15,18 @@ class ClassVariants::Instance
     result = [@classes]
 
     # Then merge the passed in overrides on top of the defaults
-    @defaults.merge(overrides)
-      .each do |variant_type, variant|
-        # dig the classes out and add them to the result
-        result << @variants.dig(variant_type, variant)
+    selected = @defaults.merge(overrides)
+
+    selected.each do |variant_type, variant|
+      # dig the classes out and add them to the result
+      result << @variants.dig(variant_type, variant)
+    end
+
+    @compoundVariants.each do |compound_variant|
+      if (compound_variant.keys - [:class]).all? { |key| selected[key] == compound_variant[key] }
+        result << compound_variant[:class]
       end
+    end
 
     # Compact out any nil values we may have dug up
     result.compact!

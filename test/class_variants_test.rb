@@ -13,9 +13,14 @@ class ClassVariantsTest < Minitest::Test
           red: "text-red",
           green: "text-green"
         },
+        ring: "focus:ring-2",
         visible: "inline-block",
         "!visible": "hidden"
       },
+      compoundVariants: [
+        { ring: true, color: :red, class: "focus:ring-red-600" },
+        { ring: true, color: :green, class: "focus:ring-green-600" }
+      ],
       defaults: {
         size: :md
       }
@@ -37,5 +42,16 @@ class ClassVariantsTest < Minitest::Test
   def test_boolean_variants
     assert_equal "rounded border text-md inline-block", @cv.render(visible: true)
     assert_equal "rounded border text-md hidden", @cv.render(visible: false)
+  end
+
+  def test_compound_variants
+    assert_equal(
+      "rounded border text-md focus:ring-2 text-red focus:ring-red-600",
+      @cv.render(ring: true, color: :red)
+    )
+    assert_equal(
+      "rounded border text-md focus:ring-2 text-green focus:ring-green-600",
+      @cv.render(ring: true, color: :green)
+    )
   end
 end

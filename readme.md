@@ -31,10 +31,11 @@ $ gem install class_variants
 
 ## Usage
 
-We create an object from the class or helper where we define the configuration using three arguments:
+We create an object from the class or helper where we define the configuration using four arguments:
 
 1. The default classes that should be applied to each variant
 1. The `variants` keyword argument where we declare the variants with their option and classes
+1. The `compoundVariants` keyword argument where we declare the compound variants with their conditions and classes
 1. The `defaults` keyword argument (optional) where we declare the default value for each variant.
 
 ## Example
@@ -75,6 +76,28 @@ button_classes = ClassVariants.build(
 button_classes.render(color: :blue, size: :sm)
 button_classes.render
 button_classes.render(color: :red, size: :xl, icon: true)
+```
+
+### Compound Variants
+
+```ruby
+button_classes = ClassVariants.build(
+  "inline-flex items-center rounded",
+  variants: {
+    color: {
+      red:  "bg-red-600",
+      blue: "bg-blue-600",
+    },
+    border: "border"
+  },
+  compoundVariants: [
+    { color: :red,  border: true, class: "border-red-800"  },
+    { color: :blue, border: true, class: "border-blue-800" }
+  ]
+)
+
+button_classes.render(color: :red) # => "inline-flex items-center rounded bg-red-600"
+button_classes.render(color: :red, border: true) # => "inline-flex items-center rounded bg-red-600 border border-red-600"
 ```
 
 ## Use with Rails
