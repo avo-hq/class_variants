@@ -147,7 +147,7 @@ end
 
 ## Try Avo ⭐️
 
-If you enjoyed this gem try out Avo. It helps developers build internal tools, admins, CMSes, CRMs, and any other type of business apps 10x faster on top of Ruby on Rails.
+If you enjoyed this gem try out [Avo](https://github.com/avo-hq/avo). It helps developers build Internal Tools, Admin Panels, CMSes, CRMs, and any other type of Business Apps 10x faster on top of Ruby on Rails.
 
 [![](./logo-on-white.png)](https://github.com/avo-hq/avo)
 
