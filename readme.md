@@ -142,6 +142,7 @@ end
 
  - [`active_storage-blurhash`](https://github.com/avo-hq/active_storage-blurhash) - A plug-n-play [blurhash](https://blurha.sh/) integration for images stored in ActiveStorage
  - [`avo`](https://github.com/avo-hq/avo) - Build Content management systems with Ruby on Rails
+ - [`prop_initializer`](https://github.com/avo-hq/prop_initializer) - A flexible tool for defining properties on Ruby classes.
  - [`stimulus-confetti`](https://github.com/avo-hq/stimulus-confetti) - The easiest way to add confetti to your StimulusJS app
 
 ## Try Avo ⭐️
