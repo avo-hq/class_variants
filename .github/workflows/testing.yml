@@ -1,6 +1,26 @@
 name: Testing
 on: push
 jobs:
+  rubocop:
+    name: Rubocop
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby:
+          - "3.0"
+          - "3.1"
+          - "3.2"
+          - "3.3"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Ruby ${{ matrix.ruby }}
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: Run Rubocop
+        run: bin/rubocop
   tests:
     name: Tests
     runs-on: ubuntu-latest
@@ -8,15 +28,16 @@ jobs:
       fail-fast: false
       matrix:
         ruby:
-          - '3.0'
-          - '3.1'
-          - '3.2'
-          - '3.3'
+          - "3.0"
+          - "3.1"
+          - "3.2"
+          - "3.3"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup Ruby ${{ matrix.ruby }}
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
       - name: Run tests
-        run: rake test
+        run: bin/rake test
