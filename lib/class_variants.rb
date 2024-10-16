@@ -5,8 +5,8 @@ require "class_variants/railtie" if defined?(Rails)
 
 module ClassVariants
   class << self
-    def build(*args, **kwargs)
-      Instance.new(*args, **kwargs)
+    def build(...)
+      Instance.new(...)
     end
   end
 end
