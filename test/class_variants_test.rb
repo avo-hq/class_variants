@@ -18,8 +18,8 @@ class ClassVariantsTest < Minitest::Test
         "!visible": "hidden"
       },
       compoundVariants: [
-        { ring: true, color: :red, class: "focus:ring-red-600" },
-        { ring: true, color: :green, class: "focus:ring-green-600" }
+        {ring: true, color: :red, class: "focus:ring-red-600"},
+        {ring: true, color: :green, class: "focus:ring-green-600"}
       ],
       defaults: {
         size: :md

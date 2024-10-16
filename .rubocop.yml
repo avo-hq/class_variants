@@ -1,0 +1,20 @@
+inherit_mode:
+  merge:
+    - Exclude
+
+require:
+  - standard
+  - standard-performance
+  - rubocop-performance
+  - rubocop-minitest
+  - rubocop-rake
+
+inherit_gem:
+  standard: config/base.yml
+  standard-performance: config/base.yml
+
+AllCops:
+  DisplayCopNames: true
+  Exclude:
+    - "**/bin/**/*"
+  NewCops: enable
