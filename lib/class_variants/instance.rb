@@ -1,10 +1,15 @@
 module ClassVariants
   class Instance
-    attr_reader :classes, :variants, :compoundVariants, :defaults
+    attr_reader :base, :variants, :compoundVariants, :defaults
 
     # rubocop:disable Naming/VariableName
-    def initialize(classes = "", variants: {}, compoundVariants: [], defaults: {})
-      @classes = classes
+    def initialize(classes = nil, base: nil, variants: {}, compoundVariants: [], defaults: {})
+      warn <<~MSG if classes
+        (ClassVariants) DEPRECATION WARNING: Use of positional argument for default classes is deprecated
+        and will be removed in the next version. Use the `base` keyword argument instead.
+      MSG
+
+      @base = base || classes
       @variants = expand_boolean_variants(variants)
       @compoundVariants = compoundVariants
       @defaults = defaults
@@ -13,7 +18,7 @@ module ClassVariants
 
     def render(**overrides)
       # Start with our default classes
-      result = [@classes]
+      result = [@base]
 
       # Then merge the passed in overrides on top of the defaults
       selected = @defaults.merge(overrides)
