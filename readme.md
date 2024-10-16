@@ -33,9 +33,9 @@ $ gem install class_variants
 
 We create an object from the class or helper where we define the configuration using four arguments:
 
-1. The default classes that should be applied to each variant
-1. The `variants` keyword argument where we declare the variants with their option and classes
-1. The `compoundVariants` keyword argument where we declare the compound variants with their conditions and classes
+1. The `base` keyword argument with default classes that should be applied to each variant.
+1. The `variants` keyword argument where we declare the variants with their option and classes.
+1. The `compoundVariants` keyword argument where we declare the compound variants with their conditions and classes.
 1. The `defaults` keyword argument (optional) where we declare the default value for each variant.
 
 ## Example
@@ -45,7 +45,7 @@ Below we implement the [button component](https://tailwindui.com/components/appl
 ```ruby
 # Define the variants and defaults
 button_classes = ClassVariants.build(
-  "inline-flex items-center rounded border border-transparent font-medium text-white hover:text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2",
+  base: "inline-flex items-center rounded border border-transparent font-medium text-white hover:text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2",
   variants: {
     size: {
       sm: "px-2.5 py-1.5 text-xs",
@@ -82,7 +82,7 @@ button_classes.render(color: :red, size: :xl, icon: true)
 
 ```ruby
 button_classes = ClassVariants.build(
-  "inline-flex items-center rounded",
+  base: "inline-flex items-center rounded",
   variants: {
     color: {
       red:  "bg-red-600",
@@ -105,7 +105,8 @@ button_classes.render(color: :red, border: true) # => "inline-flex items-center 
 ```ruby
 # Somewhere in your helpers
 def button_classes(classes, **args)
-  class_variants("inline-flex items-center rounded border border-transparent font-medium text-white hover:text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2",
+  class_variants(
+    base: "inline-flex items-center rounded border border-transparent font-medium text-white hover:text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2",
     variants: {
       size: {
         sm: "px-2.5 py-1.5 text-xs",
