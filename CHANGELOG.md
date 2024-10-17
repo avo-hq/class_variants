@@ -1,4 +1,5 @@
 ## Unreleased
+- Add helper module for defining variants ([#18](https://github.com/avo-hq/class_variants/pull/18))
 
 ## 0.0.7 (2023-12-07)
 - Add support for compound variants ([#8](https://github.com/avo-hq/class_variants/pull/8))
