@@ -1,4 +1,5 @@
 ## Unreleased
+- Add support for TailwindMerge ([#16](https://github.com/avo-hq/class_variants/pull/16))
 
 ## 0.0.7 (2023-12-07)
 - Add support for compound variants ([#8](https://github.com/avo-hq/class_variants/pull/8))

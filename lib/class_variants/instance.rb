@@ -33,7 +33,7 @@ module ClassVariants
       result.compact!
 
       # Return the final token list
-      result.join " "
+      with_tailwind_merge(result.join(" "))
     end
 
     private
@@ -51,6 +51,14 @@ module ClassVariants
 
       expanded.reduce do |output, next_variant|
         output.merge!(next_variant) { |_key, v1, v2| v1.merge!(v2) }
+      end
+    end
+
+    def with_tailwind_merge(classes)
+      if ClassVariants.configuration.tw_merge
+        ClassVariants.tailwind_merge.merge(classes)
+      else
+        classes
       end
     end
   end
