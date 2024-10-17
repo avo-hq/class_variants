@@ -54,4 +54,8 @@ class ClassVariantsTest < Minitest::Test
       @cv.render(ring: true, color: :green)
     )
   end
+
+  def test_additional_classes
+    assert_equal "rounded border text-md text-black", @cv.render(class: "text-black")
+  end
 end

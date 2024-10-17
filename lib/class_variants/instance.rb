@@ -12,6 +12,8 @@ module ClassVariants
     # rubocop:enable Naming/VariableName
 
     def render(**overrides)
+      classes = overrides.delete(:class)
+
       # Start with our default classes
       result = [@classes]
 
@@ -28,6 +30,9 @@ module ClassVariants
           result << compound_variant[:class]
         end
       end
+
+      # add the passed in classes to the result
+      result << classes
 
       # Compact out any nil values we may have dug up
       result.compact!
