@@ -1,12 +1,17 @@
 module ClassVariants
   class Instance
-    attr_reader :classes, :variants, :compoundVariants, :defaults
+    attr_reader :classes, :variants, :compound_variants, :defaults
 
     # rubocop:disable Naming/VariableName
-    def initialize(classes = "", variants: {}, compoundVariants: [], defaults: {})
+    def initialize(classes = "", variants: {}, compoundVariants: [], compound_variants: [], defaults: {})
+      warn <<~MSG unless compoundVariants.empty?
+        (ClassVariants) DEPRECATION WARNING: Use of `compoundVariants` keyword argument is deprecated
+        and will be removed in the next version. Use the `compound_variant` instead.
+      MSG
+
       @classes = classes
       @variants = expand_boolean_variants(variants)
-      @compoundVariants = compoundVariants
+      @compound_variants = compound_variants.empty? ? compoundVariants : compound_variants
       @defaults = defaults
     end
     # rubocop:enable Naming/VariableName
@@ -23,7 +28,7 @@ module ClassVariants
         result << @variants.dig(variant_type, variant)
       end
 
-      @compoundVariants.each do |compound_variant|
+      @compound_variants.each do |compound_variant|
         if (compound_variant.keys - [:class]).all? { |key| selected[key] == compound_variant[key] }
           result << compound_variant[:class]
         end
