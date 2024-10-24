@@ -11,6 +11,8 @@ module ClassVariants
     end
 
     def render(slot = :default, **overrides)
+      classes = overrides.delete(:class)
+
       # Start with our default classes
       result = [@base[slot]]
 
@@ -24,6 +26,9 @@ module ClassVariants
           result << candidate[:class]
         end
       end
+
+      # add the passed in classes to the result
+      result << classes
 
       # Compact out any nil values we may have dug up
       result.compact!
