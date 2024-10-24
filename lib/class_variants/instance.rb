@@ -34,7 +34,7 @@ module ClassVariants
       result.compact!
 
       # Return the final token list
-      result.join " "
+      with_classess_processor(result.join(" "))
     end
 
     private
@@ -95,6 +95,14 @@ module ClassVariants
     def expand_compound_variants(compound_variants)
       compound_variants.map do |compound_variant|
         compound_variant.merge(slot: :default)
+      end
+    end
+
+    def with_classess_processor(classes)
+      if ClassVariants.configuration.process_classes_with.respond_to?(:call)
+        ClassVariants.configuration.process_classes_with.call(classes)
+      else
+        classes
       end
     end
   end
