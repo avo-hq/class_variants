@@ -35,7 +35,7 @@ We create an object from the class or helper where we define the configuration u
 
 1. The `base` keyword argument with default classes that should be applied to each variant.
 1. The `variants` keyword argument where we declare the variants with their option and classes.
-1. The `compoundVariants` keyword argument where we declare the compound variants with their conditions and classes.
+1. The `compound_variants` keyword argument where we declare the compound variants with their conditions and classes
 1. The `defaults` keyword argument (optional) where we declare the default value for each variant.
 
 ## Example
@@ -90,7 +90,7 @@ button_classes = ClassVariants.build(
     },
     border: "border"
   },
-  compoundVariants: [
+  compound_variants: [
     { color: :red,  border: true, class: "border-red-800"  },
     { color: :blue, border: true, class: "border-blue-800" }
   ]
