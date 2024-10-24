@@ -3,7 +3,7 @@ require "test_helper"
 class ClassVariantsTest < Minitest::Test
   def setup
     @cv = ClassVariants.build(
-      "rounded border",
+      base: "rounded border",
       variants: {
         size: {
           sm: "text-sm",
