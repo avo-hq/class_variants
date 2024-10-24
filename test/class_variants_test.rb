@@ -17,7 +17,7 @@ class ClassVariantsTest < Minitest::Test
         visible: "inline-block",
         "!visible": "hidden"
       },
-      compoundVariants: [
+      compound_variants: [
         {ring: true, color: :red, class: "focus:ring-red-600"},
         {ring: true, color: :green, class: "focus:ring-green-600"}
       ],
