@@ -1,0 +1,8 @@
+# frozen_string_literal: true
+
+# ClassVariants.configure do |config|
+#   # allow to post process classes with an external utility like TailwindMerger
+#   config.process_classes_with do |classes|
+#     TailwindMerge::Merger.new.merge(classes)
+#   end
+# end

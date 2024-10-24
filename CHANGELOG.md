@@ -2,6 +2,7 @@
 - Add support for slots ([#15](https://github.com/avo-hq/class_variants/pull/15))
 - Allow passing additional classes when render ([#17](https://github.com/avo-hq/class_variants/pull/17))
 - Add helper module for defining variants ([#18](https://github.com/avo-hq/class_variants/pull/18))
+- Add support for post process classes ([#16](https://github.com/avo-hq/class_variants/pull/16))
 
 ## 0.0.8 (2024-10-24)
 - Deprecate usage of positional arguments ([#12](https://github.com/avo-hq/class_variants/pull/12))
