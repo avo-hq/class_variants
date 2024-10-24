@@ -48,4 +48,8 @@ class BlockTest < Minitest::Test
       @cv.render(color: :success, disabled: true)
     )
   end
+
+  def test_additional_classes
+    assert_equal "text-white py-1 px-3 rounded-full py-1 px-3 text-xs text-black", @cv.render(class: "text-black")
+  end
 end

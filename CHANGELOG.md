@@ -1,5 +1,6 @@
 ## Unreleased
 - Add support for slots ([#15](https://github.com/avo-hq/class_variants/pull/15))
+- Allow passing additional classes when render ([#17](https://github.com/avo-hq/class_variants/pull/17))
 
 ## 0.0.8 (2024-10-24)
 - Deprecate usage of positional arguments ([#12](https://github.com/avo-hq/class_variants/pull/12))
