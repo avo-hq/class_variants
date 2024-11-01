@@ -38,8 +38,6 @@ We create an object from the class or helper where we define the configuration u
 1. The `compound_variants` keyword argument where we declare the compound variants with their conditions and classes
 1. The `defaults` keyword argument (optional) where we declare the default value for each variant.
 
-## Example
-
 Below we'll implement the [button component](https://tailwindui.com/components/application-ui/elements/buttons) from Tailwind UI.
 
 ```ruby
@@ -82,7 +80,7 @@ button_classes.render
 button_classes.render(color: :red, size: :xl, icon: true)
 ```
 
-### Compound Variants
+## Compound Variants
 
 ```ruby
 button_classes = ClassVariants.build(
@@ -104,7 +102,22 @@ button_classes.render(color: :red) # => "inline-flex items-center rounded bg-red
 button_classes.render(color: :red, border: true) # => "inline-flex items-center rounded bg-red-600 border border-red-600"
 ```
 
-TODO: tailwind merge
+## Override classes with `render`
+
+We can also override the builder classes in the `render` method.
+
+```ruby
+button_classes = ClassVariants.build(
+  base: "inline-flex items-center rounded",
+  variants: { ... },
+)
+
+button_classes.render(color: :red, class: "block")
+```
+
+Now, the `block` class will be appended to the classes bus.
+
+If you're using the [`tailwind_merge`](#tailwind_merge) plugin it will override the `inline-flex` class.
 
 ## Block configurations
 
@@ -290,7 +303,7 @@ end
 <%= link_to :Avo, "https://avohq.io", class: button_classes.render(color: :red, size: :xl) %>
 ```
 
-## TailwindMerge
+## `tailwind_merge`
 
 By default, the classes are merged using `concat`, but you can use the awesome [TailwindMerge](https://github.com/gjtorikian/tailwind_merge) gem.
 Install the gem using `bundle add tailwind_merge` and use this configuration to enable it.
