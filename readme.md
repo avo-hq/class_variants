@@ -303,6 +303,23 @@ end
 <%= link_to :Avo, "https://avohq.io", class: button_classes.render(color: :red, size: :xl) %>
 ```
 
+## Helper module
+
+If you're developing something more complex you might want to use composition more. You might want to use the helper module for that.
+
+```ruby
+class MyClass
+  include ClassVariants::Helper
+
+  class_variants {
+    base: {},
+    variants: {}
+  }
+end
+
+MyClass.new.class_variants(:container, color: :red, class: "shadow")
+```
+
 ## `tailwind_merge`
 
 By default, the classes are merged using `concat`, but you can use the awesome [TailwindMerge](https://github.com/gjtorikian/tailwind_merge) gem.
