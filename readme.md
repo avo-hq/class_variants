@@ -327,8 +327,9 @@ Install the gem using `bundle add tailwind_merge` and use this configuration to 
 
 ```ruby
 ClassVariants.configure do |config|
-  config.tw_merge = true # by default is false
-  config.tw_merge_config = {} # by default is nil
+  config.process_classes_with do |classes|
+    TailwindMerge::Merger.new.merge(classes)
+  end
 end
 ```
 
