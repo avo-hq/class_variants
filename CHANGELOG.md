@@ -1,4 +1,4 @@
-## Unreleased
+## 1.0.0 (2024-11-13)
 - Add support for slots ([#15](https://github.com/avo-hq/class_variants/pull/15))
 - Allow passing additional classes when render ([#17](https://github.com/avo-hq/class_variants/pull/17))
 - Add helper module for defining variants ([#18](https://github.com/avo-hq/class_variants/pull/18))
