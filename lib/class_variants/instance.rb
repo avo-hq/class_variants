@@ -1,20 +1,36 @@
 module ClassVariants
   class Instance
-    def initialize(**options, &block)
+    def initialize(...)
+      @bases = []
+      @variants = []
+      @defaults = {}
+
+      merge(...)
+    end
+
+    def merge(**options, &block)
       raise ArgumentError, "Use of hash config and code block is not supported" if !options.empty? && block_given?
 
-      @base = options.empty? ? {} : {default: options.fetch(:base, nil)}
-      @variants = expand_variants(options.fetch(:variants, {})) + expand_compound_variants(options.fetch(:compound_variants, []))
-      @defaults = options.fetch(:defaults, {})
+      (base = options.fetch(:base, nil)) && @bases << {class: base, slot: :default}
+      @variants += [
+        expand_variants(options.fetch(:variants, {})),
+        expand_compound_variants(options.fetch(:compound_variants, []))
+      ].inject(:+)
+      @defaults.merge!(options.fetch(:defaults, {}))
 
       instance_eval(&block) if block_given?
+
+      self
     end
 
     def render(slot = :default, **overrides)
       classes = overrides.delete(:class)
+      result = []
 
       # Start with our default classes
-      result = [@base[slot]]
+      @bases.each do |base|
+        result << base[:class] if base[:slot] == slot
+      end
 
       # Then merge the passed in overrides on top of the defaults
       criteria = @defaults.merge(overrides)
@@ -44,10 +60,10 @@ module ClassVariants
 
       if block_given?
         with_slots(&block).each do |slot|
-          @base[slot[:slot]] = slot[:class]
+          @bases << slot
         end
       else
-        @base[:default] = klass
+        @bases << {slot: :default, class: klass}
       end
     end
 
