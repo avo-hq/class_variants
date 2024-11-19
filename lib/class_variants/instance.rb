@@ -8,6 +8,14 @@ module ClassVariants
       merge(...)
     end
 
+    def dup
+      self.class.new.tap do |copy|
+        copy.instance_variable_set(:@bases, @bases.dup)
+        copy.instance_variable_set(:@variants, @variants.dup)
+        copy.instance_variable_set(:@defaults, @defaults.dup)
+      end
+    end
+
     def merge(**options, &block)
       raise ArgumentError, "Use of hash config and code block is not supported" if !options.empty? && block_given?
 
