@@ -2,22 +2,22 @@ module ClassVariants
   module Helper
     module ClassMethods
       def class_variants(...)
-        @_class_variants_instance = ClassVariants.build(...)
-      end
-
-      def _class_variants_instance
-        @_class_variants_instance
+        singleton_class.instance_variable_get(:@_class_variants_instance).merge(...)
       end
     end
 
     def self.included(base)
       base.extend(ClassMethods)
+      base.singleton_class.instance_variable_set(:@_class_variants_instance, ClassVariants::Instance.new)
+      base.define_singleton_method(:inherited) do |subclass|
+        subclass.singleton_class.instance_variable_set(
+          :@_class_variants_instance, base.singleton_class.instance_variable_get(:@_class_variants_instance).dup
+        )
+      end
     end
 
     def class_variants(...)
-      raise "You must configure class_variants in class definition" unless self.class._class_variants_instance
-
-      self.class._class_variants_instance.render(...)
+      self.class.singleton_class.instance_variable_get(:@_class_variants_instance).render(...)
     end
   end
 end
