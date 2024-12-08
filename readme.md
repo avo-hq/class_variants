@@ -8,7 +8,6 @@ Inspired by [variant-classnames](https://github.com/mattvalleycodes/variant-clas
 
 * [DRY up your tailwind CSS using this awesome gem](https://www.youtube.com/watch?v=cFcwNH6x77g)
 
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -34,9 +33,9 @@ $ gem install class_variants
 We create an object from the class or helper where we define the configuration using four arguments:
 
 1. The `base` keyword argument with default classes that should be applied to each variant.
-1. The `variants` keyword argument where we declare the variants with their option and classes.
-1. The `compound_variants` keyword argument where we declare the compound variants with their conditions and classes
-1. The `defaults` keyword argument (optional) where we declare the default value for each variant.
+2. The `variants` keyword argument where we declare the variants with their option and classes.
+3. The `compound_variants` keyword argument where we declare the compound variants with their conditions and classes
+4. The `defaults` keyword argument (optional) where we declare the default value for each variant.
 
 Below we'll implement the [button component](https://tailwindui.com/components/application-ui/elements/buttons) from Tailwind UI.
 
@@ -185,6 +184,14 @@ end
 </div>
 ```
 
+## Merge definitions
+
+```ruby
+alert_classes = ClassVariants.build(base: "bg-white")
+alert_classes.merge(base: "text-black")
+alert_classes.render # => "bg-white text-black"
+```
+
 ## Full API
 
 ```ruby
@@ -303,6 +310,10 @@ end
 <%= link_to :Avo, "https://avohq.io", class: button_classes.render(color: :red, size: :xl) %>
 ```
 
+### Output
+
+### ![](sample.jpg)
+
 ## Helper module
 
 If you're developing something more complex you might want to use composition more. You might want to use the helper module for that.
@@ -311,19 +322,43 @@ If you're developing something more complex you might want to use composition mo
 class MyClass
   include ClassVariants::Helper
 
-  class_variants {
-    base: {},
-    variants: {}
-  }
+  class_variants(
+    base: "bg-white",
+    variants: {
+      color: {
+        red: "text-red",
+        blue: "text-blue"
+      }
+    }
+  )
 end
 
-MyClass.new.class_variants(:container, color: :red, class: "shadow")
+MyClass.new.class_variants(color: :red, class: "shadow") # => "bg-white text-red shadow"
+```
+
+This helper supports class inheritance, so that the subclass receives a copy of the class_variants config that the parent class had at the time of inheritance. From that point on, the settings are kept separate for both. Successive calls to class_variants helper method, will cause the configuration to be merged.
+
+```ruby
+class A
+  include ClassVariants::Helper
+
+  class_variants(base: "bg-red")
+end
+
+class B < A
+  class_variants(base: "text-black")
+end
+
+A.class_variants(base: "text-white")
+
+A.new.class_variants # => "bg-red text-white"
+B.new.class_variants # => "bg-red text-black"
 ```
 
 ## `tailwind_merge`
 
 By default, the classes are merged using `concat`, but you can use the awesome [TailwindMerge](https://github.com/gjtorikian/tailwind_merge) gem.
-Install the gem using `bundle add tailwind_merge` and use this configuration to enable it.
+Install the gem using `bundle add tailwind_merge` and use this configuration to enable it. If you're using Rails, you can put this in an initializer.
 
 ```ruby
 ClassVariants.configure do |config|
@@ -333,16 +368,12 @@ ClassVariants.configure do |config|
 end
 ```
 
-### Output
-
-![](sample.jpg)
-
 ## Other packages
 
- - [`active_storage-blurhash`](https://github.com/avo-hq/active_storage-blurhash) - A plug-n-play [blurhash](https://blurha.sh/) integration for images stored in ActiveStorage
- - [`avo`](https://github.com/avo-hq/avo) - Build Content management systems with Ruby on Rails
- - [`prop_initializer`](https://github.com/avo-hq/prop_initializer) - A flexible tool for defining properties on Ruby classes.
- - [`stimulus-confetti`](https://github.com/avo-hq/stimulus-confetti) - The easiest way to add confetti to your StimulusJS app
+- [`active_storage-blurhash`](https://github.com/avo-hq/active_storage-blurhash) - A plug-n-play [blurhash](https://blurha.sh/) integration for images stored in ActiveStorage
+- [`avo`](https://github.com/avo-hq/avo) - Build Content management systems with Ruby on Rails
+- [`prop_initializer`](https://github.com/avo-hq/prop_initializer) - A flexible tool for defining properties on Ruby classes.
+- [`stimulus-confetti`](https://github.com/avo-hq/stimulus-confetti) - The easiest way to add confetti to your StimulusJS app
 
 ## Try Avo ⭐️
 
@@ -353,12 +384,13 @@ If you enjoyed this gem try out [Avo](https://github.com/avo-hq/avo). It helps d
 ## Contributing
 
 1. Fork it `git clone https://github.com/avo-hq/class_variants`
-1. Create your feature branch `git checkout -b my-new-feature`
-1. Commit your changes `git commit -am 'Add some feature'`
-1. Push to the branch `git push origin my-new-feature`
-1. Create new Pull Request
+2. Create your feature branch `git checkout -b my-new-feature`
+3. Commit your changes `git commit -am 'Add some feature'`
+4. Push to the branch `git push origin my-new-feature`
+5. Create new Pull Request
 
 ## License
+
 This package is available as open source under the terms of the MIT License.
 
 ## Cutting a release
