@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    class_variants (1.0.0)
+    class_variants (1.1.0)
 
 GEM
   remote: https://rubygems.org/
