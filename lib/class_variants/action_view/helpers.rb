@@ -1,8 +1,8 @@
 module ClassVariants
   module ActionView
     module Helpers
-      def class_variants(classes, **args)
-        ClassVariants::Instance.new classes, **args
+      def class_variants(...)
+        ClassVariants::Instance.new(...)
       end
     end
   end
