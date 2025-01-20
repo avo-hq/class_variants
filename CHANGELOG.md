@@ -1,6 +1,7 @@
 ## Unreleased
 - Add support for merging ([#23](https://github.com/avo-hq/class_variants/pull/23))
 - Add support for subclass inheritance in helper ([#24](https://github.com/avo-hq/class_variants/pull/24))
+- Fix issue in view helper and readme example ([#30](https://github.com/avo-hq/class_variants/pull/30))
 
 ## 1.0.0 (2024-11-13)
 - Add support for slots ([#15](https://github.com/avo-hq/class_variants/pull/15))

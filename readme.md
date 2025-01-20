@@ -279,7 +279,7 @@ alert_classes.render(:body, class: "...")
 
 ```ruby
 # Somewhere in your helpers
-def button_classes(classes, **args)
+def button_classes
   class_variants(
     base: "inline-flex items-center rounded border border-transparent font-medium text-white hover:text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2",
     variants: {
