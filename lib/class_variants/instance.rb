@@ -6,6 +6,7 @@ module ClassVariants
       @bases = []
       @variants = []
       @defaults = {}
+      @slots = nil
 
       merge(...)
     end
