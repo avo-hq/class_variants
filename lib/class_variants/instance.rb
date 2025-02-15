@@ -107,9 +107,10 @@ module ClassVariants
     end
 
     def with_slots
-      @slots = []
+      new_slots = []
+      @slots = new_slots
       yield
-      @slots
+      new_slots
     end
 
     def expand_variants(variants)
