@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "class_variants/version"
 require "class_variants/action_view/helpers"
 require "class_variants/configuration"
