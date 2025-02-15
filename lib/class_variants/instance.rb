@@ -19,7 +19,7 @@ module ClassVariants
     end
 
     def merge(**options, &block)
-      raise ArgumentError, "Use of hash config and code block is not supported" if !options.empty? && block_given?
+      raise ArgumentError, "Use of hash config and code block is not supported" if !options.empty? && block
 
       (base = options.fetch(:base, nil)) && @bases << {class: base, slot: :default}
       @variants += [
@@ -28,7 +28,7 @@ module ClassVariants
       ].inject(:+)
       @defaults.merge!(options.fetch(:defaults, {}))
 
-      instance_eval(&block) if block_given?
+      instance_eval(&block) if block
 
       self
     end
@@ -66,9 +66,9 @@ module ClassVariants
     private
 
     def base(klass = nil, &block)
-      raise ArgumentError, "Use of positional argument and code block is not supported" if klass && block_given?
+      raise ArgumentError, "Use of positional argument and code block is not supported" if klass && block
 
-      if block_given?
+      if block
         with_slots(&block).each do |slot|
           @bases << slot
         end
@@ -78,9 +78,9 @@ module ClassVariants
     end
 
     def variant(**options, &block)
-      raise ArgumentError, "Use of class option and code block is not supported" if options.key?(:class) && block_given?
+      raise ArgumentError, "Use of class option and code block is not supported" if options.key?(:class) && block
 
-      if block_given?
+      if block
         with_slots(&block).each do |slot|
           @variants << options.merge(slot)
         end
