@@ -48,9 +48,15 @@ module ClassVariants
       @variants.each do |candidate|
         next unless candidate[:slot] == slot
 
-        if (candidate.keys - [:class, :slot]).all? { |key| criteria[key] == candidate[key] }
-          result << candidate[:class]
+        match = false
+
+        candidate.each_key do |key|
+          next if key == :class || key == :slot
+          match = criteria[key] == candidate[key]
+          break unless match
         end
+
+        result << candidate[:class] if match
       end
 
       # add the passed in classes to the result
