@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 module ClassVariants
   class Instance
     def initialize(...)
       @bases = []
       @variants = []
       @defaults = {}
+      @slots = nil
 
       merge(...)
     end
@@ -17,7 +20,7 @@ module ClassVariants
     end
 
     def merge(**options, &block)
-      raise ArgumentError, "Use of hash config and code block is not supported" if !options.empty? && block_given?
+      raise ArgumentError, "Use of hash config and code block is not supported" if !options.empty? && block
 
       (base = options.fetch(:base, nil)) && @bases << {class: base, slot: :default}
       @variants += [
@@ -26,7 +29,7 @@ module ClassVariants
       ].inject(:+)
       @defaults.merge!(options.fetch(:defaults, {}))
 
-      instance_eval(&block) if block_given?
+      instance_eval(&block) if block
 
       self
     end
@@ -46,9 +49,15 @@ module ClassVariants
       @variants.each do |candidate|
         next unless candidate[:slot] == slot
 
-        if (candidate.keys - [:class, :slot]).all? { |key| criteria[key] == candidate[key] }
-          result << candidate[:class]
+        match = false
+
+        candidate.each_key do |key|
+          next if key == :class || key == :slot
+          match = criteria[key] == candidate[key]
+          break unless match
         end
+
+        result << candidate[:class] if match
       end
 
       # add the passed in classes to the result
@@ -64,9 +73,9 @@ module ClassVariants
     private
 
     def base(klass = nil, &block)
-      raise ArgumentError, "Use of positional argument and code block is not supported" if klass && block_given?
+      raise ArgumentError, "Use of positional argument and code block is not supported" if klass && block
 
-      if block_given?
+      if block
         with_slots(&block).each do |slot|
           @bases << slot
         end
@@ -76,9 +85,9 @@ module ClassVariants
     end
 
     def variant(**options, &block)
-      raise ArgumentError, "Use of class option and code block is not supported" if options.key?(:class) && block_given?
+      raise ArgumentError, "Use of class option and code block is not supported" if options.key?(:class) && block
 
-      if block_given?
+      if block
         with_slots(&block).each do |slot|
           @variants << options.merge(slot)
         end
@@ -98,9 +107,10 @@ module ClassVariants
     end
 
     def with_slots
-      @slots = []
+      new_slots = []
+      @slots = new_slots
       yield
-      @slots
+      new_slots
     end
 
     def expand_variants(variants)

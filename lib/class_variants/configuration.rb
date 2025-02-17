@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ClassVariants
   class Configuration
     def process_classes_with(&block)
