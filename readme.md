@@ -381,6 +381,10 @@ If you enjoyed this gem try out [Avo](https://github.com/avo-hq/avo). It helps d
 
 [![](./logo-on-white.png)](https://github.com/avo-hq/avo)
 
+## Articles
+
+[TIL: How to use `class_variants` with Phlex](https://henrikbjorn.medium.com/til-how-to-use-class-variants-with-phlex-8042bd4407f1)
+
 ## Contributing
 
 1. Fork it `git clone https://github.com/avo-hq/class_variants`
