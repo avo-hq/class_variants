@@ -1,14 +1,28 @@
 require "test_helper"
 
 class HelperTest < Minitest::Test
-  class DemoClass
+  class BaseClass
+  end
+
+  class DemoClass < BaseClass
     include ClassVariants::Helper
 
     class_variants base: "rounded border"
   end
 
-  class Subclass < DemoClass
+  class SubClass < DemoClass
     class_variants base: "bg-black"
+  end
+
+  def test_inherited
+    mock = Minitest::Mock.new
+    mock.expect(:call, nil, [Class])
+
+    BaseClass.stub(:inherited, mock) do
+      Class.new(DemoClass)
+    end
+
+    mock.verify
   end
 
   def test_call_from_instance
@@ -16,6 +30,6 @@ class HelperTest < Minitest::Test
   end
 
   def test_call_from_subclass
-    assert_equal "rounded border bg-black", Subclass.new.class_variants
+    assert_equal "rounded border bg-black", SubClass.new.class_variants
   end
 end

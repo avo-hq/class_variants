@@ -11,9 +11,12 @@ module ClassVariants
     def self.included(base)
       base.extend(ClassMethods)
       base.singleton_class.instance_variable_set(:@_class_variants_instance, ClassVariants::Instance.new)
-      base.define_singleton_method(:inherited) do |subclass|
+
+      def base.inherited(subclass)
+        super if defined?(super)
+
         subclass.singleton_class.instance_variable_set(
-          :@_class_variants_instance, base.singleton_class.instance_variable_get(:@_class_variants_instance).dup
+          :@_class_variants_instance, singleton_class.instance_variable_get(:@_class_variants_instance).dup
         )
       end
     end
