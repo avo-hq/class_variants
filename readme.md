@@ -98,7 +98,7 @@ button_classes = ClassVariants.build(
 )
 
 button_classes.render(color: :red) # => "inline-flex items-center rounded bg-red-600"
-button_classes.render(color: :red, border: true) # => "inline-flex items-center rounded bg-red-600 border border-red-600"
+button_classes.render(color: :red, border: true) # => "inline-flex items-center rounded bg-red-600 border border-red-800"
 ```
 
 ## Override classes with `render`
