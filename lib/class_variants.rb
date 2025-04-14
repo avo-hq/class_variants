@@ -20,5 +20,17 @@ module ClassVariants
     def build(...)
       Instance.new(...)
     end
+
+    def definitions
+      @definitions ||= {}
+    end
+
+    def define(name, ...)
+      definitions[name.to_sym] = Instance.new(...)
+    end
+
+    def for(name)
+      definitions[name.to_sym]
+    end
   end
 end
