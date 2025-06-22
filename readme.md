@@ -98,7 +98,7 @@ button_classes = ClassVariants.build(
 )
 
 button_classes.render(color: :red) # => "inline-flex items-center rounded bg-red-600"
-button_classes.render(color: :red, border: true) # => "inline-flex items-center rounded bg-red-600 border border-red-600"
+button_classes.render(color: :red, border: true) # => "inline-flex items-center rounded bg-red-600 border border-red-800"
 ```
 
 ## Override classes with `render`
@@ -362,8 +362,9 @@ Install the gem using `bundle add tailwind_merge` and use this configuration to 
 
 ```ruby
 ClassVariants.configure do |config|
+  merger = TailwindMerge::Merger.new
   config.process_classes_with do |classes|
-    TailwindMerge::Merger.new.merge(classes)
+    merger.merge(classes)
   end
 end
 ```
