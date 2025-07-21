@@ -2,7 +2,7 @@
 
 We ❤️ Tailwind CSS but sometimes it's difficult to manage the state of some elements using conditionals. `class_variants` is a tiny helper that should enable you to create, configure, and apply different variants of elements as classes.
 
-![](./logo.svg)
+![](./logo.png)
 
 Inspired by [variant-classnames](https://github.com/mattvalleycodes/variant-classnames) ✌️
 
