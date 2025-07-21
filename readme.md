@@ -2,6 +2,8 @@
 
 We ❤️ Tailwind CSS but sometimes it's difficult to manage the state of some elements using conditionals. `class_variants` is a tiny helper that should enable you to create, configure, and apply different variants of elements as classes.
 
+![](./logo.svg)
+
 Inspired by [variant-classnames](https://github.com/mattvalleycodes/variant-classnames) ✌️
 
 ## Quicklinks
@@ -381,7 +383,7 @@ end
 
 If you enjoyed this gem try out [Avo](https://github.com/avo-hq/avo). It helps developers build Internal Tools, Admin Panels, CMSes, CRMs, and any other type of Business Apps 10x faster on top of Ruby on Rails.
 
-[![](./logo-on-white.png)](https://github.com/avo-hq/avo)
+[![](./avo-logo.png)](https://github.com/avo-hq/avo)
 
 ## Articles
 
