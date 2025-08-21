@@ -34,7 +34,13 @@ module ClassVariants
       self
     end
 
-    def render(slot = :default, **overrides)
+    def render(slot = nil, **overrides)
+      warn <<~MSG if slot
+        (ClassVariants) DEPRECATION WARNING: Use of positional argument for slot in render is deprecated
+        and will be removed in the next version. Use the `slot` keyword argument instead.
+      MSG
+
+      slot = overrides.fetch(:slot, slot || :default)
       classes = overrides.delete(:class)
       result = []
 

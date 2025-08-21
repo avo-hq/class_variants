@@ -1,5 +1,6 @@
 ## Unreleased
 - Fix issue with inherited hook in helper ([#33](https://github.com/avo-hq/class_variants/pull/33))
+- Deprecate usage of positional argument for slot in render ([#40](https://github.com/avo-hq/class_variants/pull/40))
 
 ## 1.1.0 (2025-01-20)
 - Add support for merging ([#23](https://github.com/avo-hq/class_variants/pull/23))
