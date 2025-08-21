@@ -4,6 +4,8 @@ inherit_mode:
 
 require:
   - standard
+
+plugins:
   - standard-performance
   - rubocop-performance
   - rubocop-minitest
