@@ -1,4 +1,4 @@
-## Unreleased
+## 1.1.1 (2026-05-04)
 - Fix issue with inherited hook in helper ([#33](https://github.com/avo-hq/class_variants/pull/33))
 
 ## 1.1.0 (2025-01-20)
