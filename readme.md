@@ -81,6 +81,8 @@ button_classes.render
 button_classes.render(color: :red, size: :xl, icon: true)
 ```
 
+> **Note**: `slot` and `class` are reserved words and cannot be used as variants keys! Continue reading for usage.
+
 ## Compound Variants
 
 ```ruby
@@ -177,10 +179,10 @@ end
 
 ```erb
 <div>
-  <div class="<%= alert_classes.render(:head) %>">
+  <div class="<%= alert_classes.render(slot: :head) %>">
     Head of alert
   </div>
-  <div class="<%= alert_classes.render(:body) %>">
+  <div class="<%= alert_classes.render(slot: :body) %>">
     Body of alert
   </div>
 </div>
@@ -262,19 +264,19 @@ alert_classes.render
 alert_classes.render(color: :red)
 
 # render slot with defaults variants
-alert_classes.render(:body)
+alert_classes.render(slot: :body)
 
 # render slot with custom variants
-alert_classes.render(:body, color: :red)
+alert_classes.render(slot: :body, color: :red)
 
-# if slot not exist, throw error? return empty classes?
-alert_classes.render(:non_existent_slot, color: :red)
+# if slot not exist, return empty classes
+alert_classes.render(slot: :non_existent_slot, color: :red)
 
 # render default slot with custom class (will be merged)
 alert_classes.render(class: "...")
 
 # render slot with custom class (will be merged)
-alert_classes.render(:body, class: "...")
+alert_classes.render(slot: :body, class: "...")
 ```
 
 ## Use with Rails

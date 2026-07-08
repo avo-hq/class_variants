@@ -45,25 +45,25 @@ class SlotTest < Minitest::Test
   end
 
   def test_render_nonexistent_slot
-    assert_equal "", @cv.render(:nonexistent)
+    assert_equal "", @cv.render(slot: :nonexistent)
   end
 
   def test_render_slot_with_defaults
-    assert_equal "rounded py-3 px-5 mb-4 bg-green-100 dark:bg-green-800", @cv.render(:root)
+    assert_equal "rounded py-3 px-5 mb-4 bg-green-100 dark:bg-green-800", @cv.render(slot: :root)
   end
 
   def test_render_slot_with_variant
-    assert_equal "rounded py-3 px-5 mb-4 border border-green-700 dark:border-green-500", @cv.render(:root, variant: :outlined)
+    assert_equal "rounded py-3 px-5 mb-4 border border-green-700 dark:border-green-500", @cv.render(slot: :root, variant: :outlined)
   end
 
   def test_render_slot_without_base
-    assert_equal "text-green-700 dark:text-green-200", @cv.render(:message)
+    assert_equal "text-green-700 dark:text-green-200", @cv.render(slot: :message)
   end
 
   def test_render_slot_with_unused_variant
     assert_equal(
       "rounded py-3 px-5 mb-4 border border-green-700 dark:border-green-500",
-      @cv.render(:root, variant: :outlined, type: :button)
+      @cv.render(slot: :root, variant: :outlined, type: :button)
     )
   end
 end

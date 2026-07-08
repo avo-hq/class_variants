@@ -65,7 +65,7 @@ class MergeTest < Minitest::Test
       defaults variant: :filled
     end
 
-    assert_equal "rounded mb-4 bg-red-100 dark:bg-red-800", cv.render(:root)
-    assert_equal "font-bold mb-1 text-red-900 dark:text-red-50", cv.render(:title)
+    assert_equal "rounded mb-4 bg-red-100 dark:bg-red-800", cv.render(slot: :root)
+    assert_equal "font-bold mb-1 text-red-900 dark:text-red-50", cv.render(slot: :title)
   end
 end
