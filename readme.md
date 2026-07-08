@@ -135,6 +135,9 @@ alert_classes = ClassVariants.build do
   # compound variant
   variant type: :button, color: :red, class: "..."
 
+  # compound variant with multiple values for a key
+  variant type: %i[button link], color: :red, class: ""
+
   # defaults
   defaults color: :red, type: :button
 end
@@ -236,6 +239,9 @@ alert_classes = ClassVariants.build(
 
   # compound variant without slots
   variant type: :button, color: :red, class: "..."
+
+  # compound variant with multiple values for a key
+  variant type: %i[button link], color: :red, class: ""
 
   # compound variant with slots
   variant type: :button, color: :red do

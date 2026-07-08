@@ -1,5 +1,6 @@
 ## 1.1.1 (2026-05-04)
 - Fix issue with inherited hook in helper ([#33](https://github.com/avo-hq/class_variants/pull/33))
+- Support multiple values for a key ([#33](https://github.com/avo-hq/class_variants/pull/44))
 
 ## 1.1.0 (2025-01-20)
 - Add support for merging ([#23](https://github.com/avo-hq/class_variants/pull/23))

@@ -53,7 +53,7 @@ module ClassVariants
 
         candidate.each_key do |key|
           next if key == :class || key == :slot
-          match = criteria[key] == candidate[key]
+          match = array_wrap(candidate[key]).include?(criteria[key])
           break unless match
         end
 
@@ -138,6 +138,10 @@ module ClassVariants
       else
         classes
       end
+    end
+
+    def array_wrap(value)
+      value.is_a?(Array) ? value : [value]
     end
   end
 end
